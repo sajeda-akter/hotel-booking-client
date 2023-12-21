@@ -25,7 +25,7 @@ const Rooms = () => {
     <h2 className="card-title">{room.roomSize}</h2>
     <p className="font-bold text-xl">${room.price}</p>
   <Link to={`/detailpage/${room._id}`}>  <div className="card-actions w-48">
-      <button className="btn border-2 border-[#704F4F] hover:bg-[#D8D8D8] text-[#472D2D] hover:text-teal-800 text-xl w-48">See Details</button>
+      <button className="btn border-2 hover:border-[#704F4F] bg-[#016A70] hover:text-[#472D2D] text-white text-xl w-48">See Details</button>
     </div></Link>
   </div>
 </div>
