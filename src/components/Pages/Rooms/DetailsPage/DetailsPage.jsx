@@ -11,7 +11,7 @@ const DetailsPage = () => {
     const {_id,image,description,roomSize,specialOffer,availability,price}=rooms
 //  console.log(rooms.availability)
 const handleBooking=()=>{
-    if(availability ===true){
+    if(availability ===false){
         const newBooking={
             image,roomSize,price,specialOffer,roomId:_id,customer:user.displayName,email:user.email
         }
@@ -53,7 +53,7 @@ const handleBooking=()=>{
           </div>
           <p className="text-xl">{description}...</p>
           <p className="text-xl font-bold">Special Offer: <span className="font-medium">{specialOffer}</span></p>
-          <p className="text-xl">Available:{availability}</p>
+          <p className="text-xl">Available:{availability===true?'unavailable':'available'}</p>
           <div className="card-actions mx-auto w-3/4 navbar-center mt-4">
             <button className="btn w-2/4 mx-auto btn-primary" onClick={handleBooking}>Buy Now</button>
           </div>

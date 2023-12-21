@@ -62,6 +62,7 @@ const Rooms = () => {
             <div className="card-body items-center text-center">
               <h2 className="card-title">{room.roomSize}</h2>
               <p className="font-bold text-xl">${room.price}</p>
+              <p className="font-medium">Available:{room.availability===true?'unavailable':'available'}</p>
               <Link to={`/detailpage/${room._id}`}>
                 {" "}
                 <div className="card-actions w-48">

@@ -4,7 +4,7 @@
         "image": "https://i.ibb.co/kK9ScQm/delux.webp",
         "roomSize": "Deluxe Suite",
         "price": 300,
-        "availability": true,
+        "availability": false,
         "specialOffer": "Stay 3 nights, get the 4th night free!"
       },
       {
@@ -12,7 +12,7 @@
         "image": "https://i.ibb.co/h2nzzxS/cottage.jpg",
         "roomSize": "Cottage Room",
         "price": 150,
-        "availability": true,
+        "availability": false,
         "specialOffer": "Complimentary breakfast for all guests."
       },
       {
@@ -44,7 +44,7 @@
         "image": "https://i.ibb.co/3WJdP76/Ski-Chalet.webp",
         "roomSize": "Ski Chalet",
         "price": 280,
-        "availability": true,
+        "availability": false,
         "specialOffer": "Winter special: Free ski equipment rental for all guests."
       },
       {
@@ -76,7 +76,7 @@
         "image": "https://i.ibb.co/jJXcgDW/Mountain-View-Cabin.webp",
         "roomSize": "Mountain View Cabin",
         "price": 160,
-        "availability": true,
+        "availability": false,
         "specialOffer": "Guided hiking tours available for all guests."
       },
       {
@@ -84,7 +84,7 @@
         "image": "https://i.ibb.co/k3DZY97/Tech-Suite.webp",
         "roomSize": "Tech Suite",
         "price": 270,
-        "availability": true,
+        "availability": false,
         "specialOffer": "Smart room controls and personalized AI concierge for tech-savvy travelers."
       },
       {
