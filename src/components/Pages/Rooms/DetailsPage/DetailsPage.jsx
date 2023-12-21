@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import axios from "axios";
 import { useLoaderData,  } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const DetailsPage = () => {
 
@@ -11,9 +12,29 @@ const handleBooking=()=>{
         const newBooking={
             image,roomSize,price,specialOffer
         }
+        axios.post('http://localhost:5000/booking',newBooking)
+        .then(data=>{
+         if(data.data.insertedId){
+            
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Successfully booking",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+         }
+        })
     }
     else{
-        console.log('no available')
+     
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "It's unavailable now",
+            showConfirmButton: false,
+            timer: 1000,
+          });
     }
 }
     return (
