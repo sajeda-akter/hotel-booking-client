@@ -1,16 +1,19 @@
 import axios from "axios";
+import { useContext } from "react";
 import { useLoaderData,  } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 
 const DetailsPage = () => {
+    const {user}=useContext(AuthContext)
 
     const rooms=useLoaderData();
-    const {image,description,roomSize,specialOffer,availability,price}=rooms
+    const {_id,image,description,roomSize,specialOffer,availability,price}=rooms
 //  console.log(rooms.availability)
 const handleBooking=()=>{
     if(availability ===true){
         const newBooking={
-            image,roomSize,price,specialOffer
+            image,roomSize,price,specialOffer,roomId:_id,customer:user.displayName,email:user.email
         }
         axios.post('http://localhost:5000/booking',newBooking)
         .then(data=>{
