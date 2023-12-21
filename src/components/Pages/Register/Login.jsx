@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
@@ -8,13 +8,16 @@ import Swal from "sweetalert2";
 const Login = () => {
     const { register, handleSubmit,reset, formState: { errors } } = useForm();
     const {signIn}=useContext(AuthContext)
+    const location=useLocation()
+    const navigate=useNavigate()
+  
 
     const handleLogin=(data)=>{
       const email=data.email;
       const password=data.password;
       signIn(email,password)
       .then(result=>{
-        console.log(result.user)
+     
         Swal.fire({
           position: "center",
           icon: "success",
@@ -22,6 +25,8 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1000,
         });
+
+        navigate(location.state?location.state:'/')
       })
 reset()
 
