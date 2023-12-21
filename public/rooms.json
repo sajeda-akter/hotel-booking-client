@@ -1,0 +1,99 @@
+ [
+      {
+        "description": "Luxurious waterfront hotel with stunning views of the ocean.",
+        "image": "https://i.ibb.co/kK9ScQm/delux.webp",
+        "roomSize": "Deluxe Suite",
+        "price": 300,
+        "availability": true,
+        "specialOffer": "Stay 3 nights, get the 4th night free!"
+      },
+      {
+        "description": "A charming countryside retreat surrounded by lush greenery.",
+        "image": "https://i.ibb.co/h2nzzxS/cottage.jpg",
+        "roomSize": "Cottage Room",
+        "price": 150,
+        "availability": true,
+        "specialOffer": "Complimentary breakfast for all guests."
+      },
+      {
+        "description": "Modern city hotel in the heart of downtown with easy access to attractions.",
+        "image": "https://i.ibb.co/kGFhV1R/Executive.webp",
+        "roomSize": "Executive Room",
+        "price": 250,
+        "availability": false,
+        "specialOffer": "Book in advance and save 15% on your stay."
+      },
+      {
+        "description": "Elegant boutique hotel with personalized service and stylish accommodations.",
+        "image": "https://i.ibb.co/yWZqMXW/Junior-Suite.webp",
+        "roomSize": "Junior Suite",
+        "price": 200,
+        "availability": true,
+        "specialOffer": "Upgrade to a suite at no extra cost."
+      },
+      {
+        "description": "Historic hotel in a picturesque location, perfect for a romantic getaway.",
+        "image": "https://i.ibb.co/cDfqCxQ/Historic.webp",
+        "roomSize": "Historic Room",
+        "price": 180,
+        "availability": true,
+        "specialOffer": "Candlelit dinner included with every booking."
+      },
+      {
+        "description": "Ski resort hotel with direct access to the slopes and cozy mountain lodgings.",
+        "image": "https://i.ibb.co/3WJdP76/Ski-Chalet.webp",
+        "roomSize": "Ski Chalet",
+        "price": 280,
+        "availability": true,
+        "specialOffer": "Winter special: Free ski equipment rental for all guests."
+      },
+      {
+        "description": "Family-friendly hotel with spacious rooms and recreational facilities.",
+        "image": "https://i.ibb.co/6HB0srv/Family.webp",
+        "roomSize": "Family Suite",
+        "price": 170,
+        "availability": false,
+        "specialOffer": "Kids stay and eat free with family bookings."
+      },
+      {
+        "description": "Contemporary urban hotel with skyline views and modern amenities.",
+        "image": "https://i.ibb.co/ts2Ld5L/City-View.webp",
+        "roomSize": "City View Room",
+        "price": 220,
+        "availability": true,
+        "specialOffer": "Exclusive spa package included for weekend stays."
+      },
+      {
+        "description": "Secluded beachfront resort offering a peaceful escape and private villas.",
+        "image": "https://i.ibb.co/MRgwkKS/Beachfront-Villa.webp",
+        "roomSize": "Beachfront Villa",
+        "price": 350,
+        "availability": true,
+        "specialOffer": "Complimentary snorkeling excursion for guests staying a week or more."
+      },
+      {
+        "description": "Rustic mountain lodge surrounded by nature, perfect for outdoor enthusiasts.",
+        "image": "https://i.ibb.co/jJXcgDW/Mountain-View-Cabin.webp",
+        "roomSize": "Mountain View Cabin",
+        "price": 160,
+        "availability": true,
+        "specialOffer": "Guided hiking tours available for all guests."
+      },
+      {
+        "description": "Futuristic hotel with cutting-edge design and technology-driven guest experiences.",
+        "image": "https://i.ibb.co/k3DZY97/Tech-Suite.webp",
+        "roomSize": "Tech Suite",
+        "price": 270,
+        "availability": true,
+        "specialOffer": "Smart room controls and personalized AI concierge for tech-savvy travelers."
+      },
+      {
+        "description": "Peaceful lakeside resort offering serene views and water activities.",
+        "image": "https://i.ibb.co/h8LNzRx/Lake-View-Room.webp",
+        "roomSize": "Lake View Room",
+        "price": 190,
+        "availability": true,
+        "specialOffer": "Free boat rental for guests staying three nights or more."
+      }
+    ]
+    
