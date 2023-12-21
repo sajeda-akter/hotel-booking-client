@@ -51,11 +51,11 @@ const Rooms = () => {
           <div key={room._id} className="card w-96  bg-[#BCEAD5] shadow-xl">
             <Link to={`/detailpage/${room._id}`}>
               {" "}
-              <figure className="px-10 pt-10">
+              <figure className="">
                 <img
                   src={room.image}
                   alt={room.roomSize}
-                  className="rounded-xl w-72 h-52"
+                  className="rounded-t-xl w-96 h-52"
                 />
               </figure>
             </Link>
