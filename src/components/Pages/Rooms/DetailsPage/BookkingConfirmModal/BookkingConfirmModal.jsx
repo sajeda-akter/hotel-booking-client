@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../../../AuthProvider/AuthProvider";
+import moment from "moment";
 
 const BookkingConfirmModal = ({
   isBuyModalOpen,
@@ -10,16 +11,14 @@ const BookkingConfirmModal = ({
   rooms,
   startDate,
 }) => {
-  console.log(startDate);
+
   const { user } = useContext(AuthContext);
   // const [startDate, setStartDate] = useState(new Date());
   const {
     _id,
     image,
-    description,
     roomSize,
     specialOffer,
-    availability,
     price,
   } = rooms;
   const [book, setBook] = useState([]);
@@ -32,6 +31,7 @@ const BookkingConfirmModal = ({
   }, []);
 
   const idCheck = book.find((bk) => bk.roomId === rooms._id);
+  const date=moment(startDate).format("MMM Do yyyy")
 
   //  console.log(rooms.availability)
   const handleBooking = () => {
@@ -40,7 +40,7 @@ const BookkingConfirmModal = ({
         image,
         roomSize,
         price,
-        date: startDate,
+        date,
         specialOffer,
         roomId: _id,
         customer: user.displayName,
@@ -68,6 +68,7 @@ const BookkingConfirmModal = ({
       });
     }
   };
+
   return (
     <div>
       <dialog
@@ -86,7 +87,7 @@ const BookkingConfirmModal = ({
           <h3 className="font-bold text-lg">{roomSize}</h3>
           <p className="py-4 font-extrabold">{price}</p>
           <p>{specialOffer}</p>
-          {/* <p>[{startDate}]</p> */}
+          <p>{moment(startDate).format("MMM Do yyyy")}</p>
           <button
             className="btn w-2/4 mx-auto btn-primary"
             onClick={handleBooking}

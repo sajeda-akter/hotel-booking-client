@@ -2,30 +2,37 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useLoaderData } from "react-router-dom";
-// from datetime import datetime
+import moment from "moment";
 
 const Reviews = () => {
   const { user } = useContext(AuthContext);
+  const [bookings,setBookings]=useState([])
+    const email=bookings.map(booking=>booking.email=== user?.email)
+    console.log(email)
 
   const [currentTimestamp, setCurrentTimestamp] = useState(null);
- const booking=useLoaderData()
- console.log(booking)
-  useEffect(() => {
-    // Function to get the current timestamp
-    const getCurrentTimestamp = () => {
-      const timestamp = new Date();
-      setCurrentTimestamp(timestamp);
-    };
+  useEffect(()=>{
 
-    // Call the function when the component mounts
-    getCurrentTimestamp();
+    axios.get('http://localhost:5000/booking')
+    .then(data=>setBookings(data.data))
 
-    const intervalId = setInterval(getCurrentTimestamp, 1000);
+  },[])
 
-    // Clean up the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []);
+  // useEffect(() => {
+  //   // Function to get the current timestamp
+  //   const getCurrentTimestamp = () => {
+  //     const timestamp = new Date();
+  //     setCurrentTimestamp(timestamp);
+  //   };
+
+  //   // Call the function when the component mounts
+  //   getCurrentTimestamp();
+
+  //   const intervalId = setInterval(getCurrentTimestamp, 1000);
+
+  //   // Clean up the interval when the component unmounts
+  //   return () => clearInterval(intervalId);
+  // }, []);
 
   const handleReview = (e) => {
     e.preventDefault();
@@ -37,23 +44,36 @@ const Reviews = () => {
 
     const addReview = {
       customer,
+      img:user.photoURL,
       rating,
       comment,
       date,
     };
-    axios.post('http://localhost:5000/reviews',addReview)
-    .then(data=>{
-       if(data.data.insertedId){
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Successfully add a review",
-            showConfirmButton: false,
-            timer: 1000,
-          });
-       }
-    })
+    if(!email){
+      axios.post('http://localhost:5000/reviews',addReview)
+      .then(data=>{
+         if(data.data.insertedId){
+          Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Successfully add a review",
+              showConfirmButton: false,
+              timer: 1000,
+            });
+         }
+      })
+  
+    }
+    else{
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "You have to booking first",
+        showConfirmButton: false,
+        timer: 1000,
+      });
 
+    }
     e.target.user.value = "";
     e.target.rating.value = "";
     e.target.comment.value = "";
@@ -115,7 +135,7 @@ const Reviews = () => {
               type="text"
               placeholder="Date"
               name="date"
-              defaultValue={currentTimestamp}
+              defaultValue={moment().format("MMM Do yyyy")}
               readOnly
               className="input input-bordered"
               required

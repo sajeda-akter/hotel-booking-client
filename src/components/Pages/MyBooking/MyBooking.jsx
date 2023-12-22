@@ -8,9 +8,9 @@ const MyBooking = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBooking] = useState([]);
   // const now = moment();
-  const tomorrow = moment().add(1, 'day');
-  const date=bookings.map(book=>book.date)
-const yesterday = moment().subtract(1, 'day');
+  // const tomorrow = moment().add(1, 'day');
+  // const date=bookings.map(book=>book.date)
+// const yesterday = moment().subtract(1, 'day');
 // console.log(date)
 // console.log(yesterday._d)
 // console.log(tomorrow,yesterday)
@@ -21,8 +21,7 @@ const yesterday = moment().subtract(1, 'day');
         setBooking(result.data);
       });
   }, [user.email]);
-
-
+console.log(bookings)
   const handleDelete = (_id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -76,7 +75,7 @@ const yesterday = moment().subtract(1, 'day');
                 <th>{i+1}</th>
                 <td>{booking.roomSize}</td>
                 <td>${booking.price}</td>
-                <td>{booking.date.slice(0,10)}</td>
+                <td>{booking.date}</td>
                 <td>
                   {" "}
                   <button className="border-2 border-[#016A70] hover:bg-[#35A29F] w-24 text-center rounded-md px-1 py-2 hover:text-[#FFFBF5]">

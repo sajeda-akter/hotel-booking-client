@@ -6,7 +6,8 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import BookkingConfirmModal from "./BookkingConfirmModal/BookkingConfirmModal";
-// moment().format();
+import ReviewShow from "./ReviewShow/ReviewShow";
+
 
 const DetailsPage = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -22,7 +23,8 @@ const DetailsPage = () => {
   };
 
   return (
-    <div className="card w-10/12 mx-auto mt-4  bg-gray-300 shadow">
+   <div>
+     <div className="card w-10/12 mx-auto mt-4  bg-gray-300 shadow">
       <figure className="px-10 pt-10">
         <img src={image} alt={roomSize} className="w-11/12 h-96 rounded-xl" />
       </figure>
@@ -66,6 +68,8 @@ const DetailsPage = () => {
         </div>
       </div>
     </div>
+    <ReviewShow/>
+   </div>
   );
 };
 

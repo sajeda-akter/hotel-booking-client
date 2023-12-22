@@ -17,7 +17,7 @@ const Rooms = () => {
       )
 
       setRooms(roomsPrice)
-    console.log(roomsPrice)
+   
   //   for(const perPrice of roomsPrice){
   //     if(price>=perPrice ){
   //       newPrice.push(perPrice)
