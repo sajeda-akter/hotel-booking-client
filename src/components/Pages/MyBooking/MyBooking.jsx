@@ -2,10 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
+import moment from 'moment';
 
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBooking] = useState([]);
+  // const now = moment();
+  const tomorrow = moment().add(1, 'day');
+  const date=bookings.map(book=>book.date)
+const yesterday = moment().subtract(1, 'day');
+// console.log(date)
+// console.log(yesterday._d)
+// console.log(tomorrow,yesterday)
   useEffect(() => {
     axios
       .get(`http://localhost:5000/booking?email=${user?.email}`)
@@ -13,6 +21,7 @@ const MyBooking = () => {
         setBooking(result.data);
       });
   }, [user.email]);
+
 
   const handleDelete = (_id) => {
     Swal.fire({
@@ -24,7 +33,7 @@ const MyBooking = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
-      console.log(result);
+      
       if (result.isConfirmed) {
         axios.delete(`http://localhost:5000/booking/${_id}`).then((data) => {
           if (data.data.deletedCount > 0) {
@@ -55,6 +64,7 @@ const MyBooking = () => {
               <th></th>
               <th>Room</th>
               <th>Price</th>
+              <th>Date</th>
               <th>Status Change</th>
               <th>Booking Status</th>
             </tr>
@@ -63,9 +73,10 @@ const MyBooking = () => {
             {/* row 1 */}
             {bookings.map((booking, i) => (
               <tr key={booking._id}>
-                <th>{i}</th>
+                <th>{i+1}</th>
                 <td>{booking.roomSize}</td>
                 <td>${booking.price}</td>
+                <td>{booking.date.slice(0,10)}</td>
                 <td>
                   {" "}
                   <button className="border-2 border-[#016A70] hover:bg-[#35A29F] w-24 text-center rounded-md px-1 py-2 hover:text-[#FFFBF5]">

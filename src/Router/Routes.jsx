@@ -7,6 +7,7 @@ import Rooms from "../components/Pages/Rooms/Rooms";
 import MyBooking from "../components/Pages/MyBooking/MyBooking";
 import DetailsPage from "../components/Pages/Rooms/DetailsPage/DetailsPage";
 import PrivateRouter from "./PrivateRouter";
+import Reviews from "../components/Pages/Reviews/Reviews";
 
 export const routers=createBrowserRouter([
     {
@@ -32,6 +33,11 @@ export const routers=createBrowserRouter([
             {
                 path:'/myBooking',
                 element:<MyBooking/>
+            },
+            {
+                path:'/reviews',
+                loader:()=>fetch('http://localhost:5000/booking'),
+                element:<Reviews/>
             },
             {
                 path:'/detailpage/:id',
