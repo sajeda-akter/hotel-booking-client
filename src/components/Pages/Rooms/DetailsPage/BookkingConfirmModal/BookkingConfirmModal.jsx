@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../../../AuthProvider/AuthProvider";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 const BookkingConfirmModal = ({
   isBuyModalOpen,
@@ -22,19 +23,28 @@ const BookkingConfirmModal = ({
     price,
   } = rooms;
   const [book, setBook] = useState([]);
-  useEffect(() => {
+  const navigate=useNavigate()
+  const getFetch=()=>{
     fetch("http://localhost:5000/booking")
-      .then((res) => res.json())
-      .then((data) => {
-        setBook(data);
-      });
+    .then((res) => res.json())
+    .then((data) => {
+      setBook(data);
+    });
+  }
+  useEffect(() => {
+
+  getFetch()
   }, []);
+  const handleReFetch=()=>{
+    getFetch()
+  }
 
   const idCheck = book.find((bk) => bk.roomId === rooms._id);
   const date=moment(startDate).format("yyyy-MM-DD")
 
   //  console.log(rooms.availability)
   const handleBooking = () => {
+    handleReFetch
     if (!idCheck) {
       const newBooking = {
         image,
@@ -55,6 +65,7 @@ const BookkingConfirmModal = ({
             showConfirmButton: false,
             timer: 1000,
           });
+          navigate('/reviews')
           setIsBuyModalOpen(false);
         }
       });

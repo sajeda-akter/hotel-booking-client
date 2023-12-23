@@ -17,7 +17,7 @@ const Reviews = () => {
     .then(data=>setBookings(data.data))
 
   },[])
-
+console.log(bookings)
   // useEffect(() => {
   //   // Function to get the current timestamp
   //   const getCurrentTimestamp = () => {
@@ -49,7 +49,7 @@ const Reviews = () => {
       comment,
       date,
     };
-    if(!email){
+    if(email){
       axios.post('http://localhost:5000/reviews',addReview)
       .then(data=>{
          if(data.data.insertedId){
@@ -77,7 +77,7 @@ const Reviews = () => {
     e.target.user.value = "";
     e.target.rating.value = "";
     e.target.comment.value = "";
-    // e.target.date.value=''
+    e.target.date.value=''
   };
 
   return (

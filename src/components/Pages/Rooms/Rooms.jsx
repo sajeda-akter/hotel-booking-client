@@ -4,12 +4,23 @@ import { Link } from "react-router-dom";
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
+  const [reviews,setReviews]=useState([])
+
+  // all room list data
   useEffect(() => {
     fetch("http://localhost:5000/rooms")
       .then((res) => res.json())
       .then((data) => setRooms(data));
   }, []);
 
+  // all reviews
+  useEffect(()=>{
+    fetch('http://localhost:5000/reviews')
+    .then(res=>res.json())
+    .then(data=>setReviews(data))
+  },[])
+
+  // filter by price range
   const handlePriceRange=(e)=>{
     const price=parseInt(e.target.value)
     const roomsPrice=rooms.filter(room=>
@@ -33,6 +44,7 @@ const Rooms = () => {
 
   return (
     <div className="w-10/12 mx-auto mt-12">
+    <p className="text-3xl text-center font-medium"> Our Total Reviews: {reviews.length}</p>
    <div className="flex items-center ml-24 my-6">
    <h1 className="text-2xl font-medium me-6">Filter By Price Range</h1>
         <select onChange={handlePriceRange} className="select select-bordered w-full max-w-xs">
