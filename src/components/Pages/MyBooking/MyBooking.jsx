@@ -8,12 +8,16 @@ const MyBooking = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBooking] = useState([]);
   // const now = moment();
-  // const tomorrow = moment().add(1, 'day');
-  // const date=bookings.map(book=>book.date)
-// const yesterday = moment().subtract(1, 'day');
-// console.log(date)
-// console.log(yesterday._d)
-// console.log(tomorrow,yesterday)
+  const tomorrow = moment().add(1, 'day');
+  // const dates=bookings.map(book=>book.date)
+
+  // dates.forEach((date) => {
+  //   const newDate = moment(date).add(1, 'day');
+  //   console.log(newDate.format('DD-MM-YYYY'));
+  // });
+  // console.log(moment().add(1,'day'))
+  // const yesterday = moment().date(1,"date");
+
   useEffect(() => {
     axios
       .get(`http://localhost:5000/booking?email=${user?.email}`)
@@ -21,7 +25,8 @@ const MyBooking = () => {
         setBooking(result.data);
       });
   }, [user.email]);
-console.log(bookings)
+
+// console.log(yesterday)
   const handleDelete = (_id) => {
     Swal.fire({
       title: "Are you sure?",
