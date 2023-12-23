@@ -3,20 +3,32 @@ import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
 import moment from 'moment';
+import UpdateDate from "./UpdateDate/UpdateDate";
+import { Link } from "react-router-dom";
 
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBooking] = useState([]);
-  // const now = moment();
-  const tomorrow = moment().add(1, 'day');
-  // const dates=bookings.map(book=>book.date)
+ const [differenece,setDifferenece]=useState(null)
+//  console.log(differenece)
 
-  // dates.forEach((date) => {
-  //   const newDate = moment(date).add(1, 'day');
-  //   console.log(newDate.format('DD-MM-YYYY'));
-  // });
-  // console.log(moment().add(1,'day'))
-  // const yesterday = moment().date(1,"date");
+  useEffect(() => {
+  
+    const dates=bookings.map(book=>book.date)
+    const calculatedDifferenceDays= dates.forEach((date)=>{
+      // Format date to "YYYY-MM-DD"
+    const deleteBookDate = moment(date).format("YYYY-MM-DD");
+    // Subtract 2 days from deleteBookDate
+    const dateBefore = moment(deleteBookDate).subtract(2, 'd');
+    const formattedDate = dateBefore.format("YYYY-MM-DD");
+    const differenceDays = moment(deleteBookDate, 'YYYY-MM-DD').diff(formattedDate, 'days');
+    console.log(differenceDays)
+    return differenceDays
+    
+  })
+  setDifferenece(calculatedDifferenceDays)
+    
+  }, [bookings]);
 
   useEffect(() => {
     axios
@@ -28,6 +40,15 @@ const MyBooking = () => {
 
 // console.log(yesterday)
   const handleDelete = (_id) => {
+    const date=bookings.find(booking=>booking._id===_id)
+    const deleteBookDate = moment(date.date).format("YYYY-MM-DD");
+    // Subtract 2 days from deleteBookDate
+    const dateBefore = moment(deleteBookDate).subtract(2, 'd');
+    const formattedDate = dateBefore.format("YYYY-MM-DD");
+    const differenceDays = moment(deleteBookDate, 'YYYY-MM-DD').diff(formattedDate, 'days');
+    console.log(differenceDays,deleteBookDate,dateBefore)
+  if(differenceDays){
+   
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -54,7 +75,8 @@ const MyBooking = () => {
         });
       }
     });
-  };
+  } };
+  
   return (
     <div className="w-3/4 mx-auto my-12 text-center ">
       <h1 className="text-2xl font-medium text-center my-6">
@@ -83,9 +105,17 @@ const MyBooking = () => {
                 <td>{booking.date}</td>
                 <td>
                   {" "}
-                  <button className="border-2 border-[#016A70] hover:bg-[#35A29F] w-24 text-center rounded-md px-1 py-2 hover:text-[#FFFBF5]">
+                  {/* <button className="btn">open modal</button> */}
+
+                <Link to={`/update/${booking._id}`}>
+                <button   
+                // onClick={()=>document.getElementById('updateModal').showModal()}
+                 className="border-2 border-[#016A70] hover:bg-[#35A29F] w-24 text-center rounded-md px-1 py-2 hover:text-[#FFFBF5]">
                     Edit
                   </button>
+                </Link>
+                 {/* <UpdateDate/> */}
+
                 </td>
                 <td>
                   {" "}

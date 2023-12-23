@@ -31,7 +31,7 @@ const BookkingConfirmModal = ({
   }, []);
 
   const idCheck = book.find((bk) => bk.roomId === rooms._id);
-  const date=moment(startDate).format("MMM Do yyyy")
+  const date=moment(startDate).format("yyyy-MM-DD")
 
   //  console.log(rooms.availability)
   const handleBooking = () => {
@@ -87,7 +87,7 @@ const BookkingConfirmModal = ({
           <h3 className="font-bold text-lg">{roomSize}</h3>
           <p className="py-4 font-extrabold">{price}</p>
           <p>{specialOffer}</p>
-          <p>{moment(startDate).format("MMM Do yyyy")}</p>
+          <p>{moment(startDate).format("yyyy-MM-DD")}</p>
           <button
             className="btn w-2/4 mx-auto btn-primary"
             onClick={handleBooking}

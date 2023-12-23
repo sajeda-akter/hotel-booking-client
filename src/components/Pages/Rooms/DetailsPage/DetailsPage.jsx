@@ -49,7 +49,7 @@ const DetailsPage = () => {
             className="w-52 rounded-md pl-3"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-            dateFormat="dd/MM/yyyy"
+            dateFormat="yyyy-MM-dd"
           />
         </p>
         <div className="card-actions mx-auto w-3/4 navbar-center mt-4">
