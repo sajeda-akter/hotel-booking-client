@@ -7,8 +7,7 @@ import { Link } from "react-router-dom";
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [price, setPrice] = useState(0);
-
+rooms.map(room=>console.log(room._id))
   // all room list data
   useEffect(() => {
     fetch("https://assignment-category-0004-server.vercel.app/rooms")
@@ -38,7 +37,7 @@ const Rooms = () => {
   };
 
   return (
-    <div className="w-10/12 mx-auto mt-12">
+    <div className="lg:w-10/12 w-11/12 mx-auto mt-12">
       <Helmet>
         <meta charSet="utf-8" />
         <title>Room Page</title>
@@ -47,8 +46,8 @@ const Rooms = () => {
         {" "}
         Our Total Reviews: {reviews.length}
       </p>
-      <div className="flex items-center ml-24 my-6">
-        <h1 className="text-2xl font-medium me-6">Filter By Price Range</h1>
+      <div className="flex lg:flex-row md:flex-row md:ml-24 flex-col mt-6 items-center lg:ml-24 my-6">
+        <h1 className="lg:text-2xl font-medium lg:me-6 mb-3 md:me-4">Filter By Price Range</h1>
         <select
           onChange={handlePriceRange}
           className="select select-bordered w-full max-w-xs"
@@ -63,16 +62,16 @@ const Rooms = () => {
         </select>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  gap-8">
         {rooms.map((room) => (
-          <div key={room._id} className="card w-96  bg-[#BCEAD5] shadow-xl">
+          <div key={room._id} className="card w-96 md:w-80  bg-[#BCEAD5] shadow-xl">
             <Link to={`/detailpage/${room._id}`}>
               {" "}
               <figure className="">
                 <img
                   src={room.image}
                   alt={room.roomSize}
-                  className="rounded-t-xl w-96 h-52"
+                  className="rounded-t-xl w-96 h-52 "
                 />
               </figure>
             </Link>

@@ -20,10 +20,10 @@ const Login = () => {
       signIn(email,password)
       .then(result=>{
           const user={email}
-        axios.post('https://assignment-category-0004-server.vercel.app/jwt',user,{withCredentials:true})
-        .then(res=>{
-          console.log(res.data)
-        })
+        // axios.post('https://assignment-category-0004-server.vercel.app/jwt',user,{withCredentials:true})
+        // .then(res=>{
+        //   console.log(res.data)
+        // })
         Swal.fire({
           position: "center",
           icon: "success",
@@ -41,11 +41,11 @@ reset()
       googleSignin()
       .then(result=>{
     
-        const user={email:result.user.email}
-        axios.post('https://assignment-category-0004-server.vercel.app/jwt',user,{withCredentials:true})
-        .then(res=>{
-          console.log(res.data)
-        })
+        // const user={email:result.user.email}
+        // axios.post('https://assignment-category-0004-server.vercel.app/jwt',user,{withCredentials:true})
+        // .then(res=>{
+        //   console.log(res.data)
+        // })
       })
       .catch(err=>console.log(err))
     }

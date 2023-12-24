@@ -12,15 +12,20 @@ const MyBooking = () => {
 
   // get all booking which booked
   useEffect(() => {
-    axios
-      .get(`https://assignment-category-0004-server.vercel.app/booking?email=${user?.email}`,{withCredentials:true})
-      .then((result) => {
-        setBooking(result.data);
-      })
-      .catch((error) => {
-        // Handle error
-        console.error("Error fetching data:", error.message);
-      });
+    if (user?.email) {
+      axios
+        .get(`https://assignment-category-0004-server.vercel.app/booking?email=${user.email}`
+        // { withCredentials: true }
+        )
+        .then((result) => {
+          setBooking(result.data);
+          console.log(result);
+        })
+        .catch((error) => {
+          // Handle error
+          console.error("Error fetching data:", error.message);
+        });
+    }
   }, [user.email]);
   console.log(bookings)
 

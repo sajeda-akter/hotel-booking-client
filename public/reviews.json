@@ -1,0 +1,23 @@
+[
+    {
+        "customer":"Sajeda Akter",
+        "email":"saju@gmail.com",
+        "date":"2023-10-24",
+        "comment":"This so good.helooooooooooooohellllllloooo.",
+        "rating":"4"
+    },
+    {
+        "customer":"Ruksana Akter",
+        "email":"ruk@gmail.com",
+        "date":"2023-10-24",
+        "comment":"This so good.helooooooooooooohellllllloooo.",
+        "rating":"4"
+    },
+    {
+        "customer":"Rubi Akter",
+        "email":"rubi@gmail.com",
+        "date":"2023-10-24",
+        "comment":"This so good.helooooooooooooohellllllloooo.",
+        "rating":"4"
+    }
+]

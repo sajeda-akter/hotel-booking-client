@@ -14,7 +14,7 @@ const DetailsPage = () => {
   const rooms = useLoaderData();
   const { image, description, roomSize, specialOffer, availability, price } =
     rooms;
-
+console.log(rooms)
   // Modal States
   const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
   const onCloseBuyModal = () => {
@@ -27,19 +27,19 @@ const DetailsPage = () => {
       <meta charSet="utf-8" />
         <title>Details Page</title>
       </Helmet>
-     <div className="card w-10/12 mx-auto mt-4  bg-gray-300 shadow">
-      <figure className="px-10 pt-10">
-        <img src={image} alt={roomSize} className="w-11/12 h-96 rounded-xl" />
+     <div className="card lg:w-10/12 w-11/12 mx-auto mt-4  bg-gray-300 shadow">
+      <figure className="lg:px-10 lg:pt-10 p-4">
+        <img src={image} alt={roomSize} className="lg:w-11/12  lg:h-96 rounded-xl" />
       </figure>
-      <div className="card-body ml-16">
-        <div className="flex justify-between items-center space-x-44">
-          <h2 className="card-title text-3xl font-bold">{roomSize}</h2>
-          <p className="text-2xl font-medium">
+      <div className="card-body lg:ml-16">
+        <div className="flex lg:flex-row flex-col justify-between items-center lg:space-x-44">
+          <h2 className="card-title text-2xl lg:text-3xl font-bold">{roomSize}</h2>
+          <p className="lg:text-2xl text-xl font-medium">
             Price Per Night: <span className="font-extrabold">${price}</span>
           </p>
         </div>
-        <p className="text-xl">{description}...</p>
-        <p className="text-xl font-bold">
+        <p className="lg:text-xl">{description}...</p>
+        <p className="text-xl ">
           Special Offer: <span className="font-medium">{specialOffer}</span>
         </p>
         <p className="text-xl">
@@ -56,8 +56,7 @@ const DetailsPage = () => {
           />
         </p>
         <div className="card-actions mx-auto w-3/4 navbar-center mt-4">
-          {/* You can open the modal using document.getElementById('ID').showModal() method */}
-          <button className="btn" onClick={() => setIsBuyModalOpen(true)}>
+          <button className="lg:w-72 lg:text-xl mt-6 btn border-2 border-[#016A70] hover:border-0 hover:bg-[#35A29F] w-44 mx-auto text-center rounded-md px-1 py-2 hover:text-[#FFFBF5]" onClick={() => setIsBuyModalOpen(true)}>
         View Before Confirm
           </button>
 

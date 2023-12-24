@@ -63,71 +63,71 @@ const Reviews = () => {
       <meta charSet="utf-8" />
         <title>Review Add Page</title>
       </Helmet>
-      <p>Current Timestamp: </p>
+    
 
       <h1 className="text-2xl font-bold text-center mt-12 mb-4">
         {" "}
         Add To your review
       </h1>
-      <div className=" bg-slate-200 card shrink-0 w-3/4 mx-auto  shadow-xl ">
-        <form className="card-body grid grid-cols-2 " onSubmit={handleReview}>
-          <div className="form-control ">
-            <label className="label">
-              <span className="label-text text-xl font-medium">UserName</span>
-            </label>
-            <input
-              type="text"
-              defaultValue={user?.displayName}
-              name="user"
-              placeholder="User name"
-              className=" w-full input input-bordered"
-              required
-              readOnly
-            />
+      
+     <form onSubmit={handleReview} className="grid grid-cols-1 gap-x-6 lg:grid-cols-2 md:grid-cols-2 w-10/12 mx-auto p-12 rounded-md bg-slate-300">
+     <div className="form-control ">
+  <label className="label">
+    <span className="label-text lg:text-xl font-medium">UserName</span>
+  </label>
+  <input
+    type="text"
+    defaultValue={user?.displayName}
+    name="user"
+    placeholder="User name"
+    className="input input-bordered " 
+    required
+    readOnly
+  />
+</div>
+<div className="form-control">
+  <label className="label">
+    <span className="label-text lg:text-xl font-medium">Rating</span>
+  </label>
+  <input
+    type="text"
+    name="rating"
+    placeholder="Give me some rating 5/5"
+    className="input input-bordered w-full"
+    required
+  />
+</div>
+<div className="form-control">
+  <label className="label">
+    <span className="label-text lg:text-xl font-medium">Comment</span>
+  </label>
+  <input
+    type="text"
+    placeholder="Enter your comments"
+    name="comment"
+    className="input input-bordered w-full" 
+    required
+  />
+</div>
+<div className="form-control">
+  <label className="label">
+    <span className="label-text lg:text-xl font-medium">Timestamp</span>
+  </label>
+  <input
+    type="text"
+    placeholder="Date"
+    name="date"
+    defaultValue={moment().format("MMM Do yyyy")}
+    readOnly
+    className="input input-bordered w-full" 
+    required
+  />
+</div>
+<div className="form-control w-52 lg:w-2/4  mx-auto mt-4 md:col-span-2">
+            <button className="btn btn-primary ">Submit</button>
           </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text text-xl font-medium">Rating</span>
-            </label>
-            <input
-              type="text"
-              name="rating"
-              placeholder="Give me some rating 10/10"
-              className="input input-bordered"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text text-xl font-medium">Comment</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your comments"
-              name="comment"
-              className="input input-bordered"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text text-xl font-medium">Timestamp</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Date"
-              name="date"
-              defaultValue={moment().format("MMM Do yyyy")}
-              readOnly
-              className="input input-bordered"
-              required
-            />
-          </div>
-          <div className="form-control mt-6 col-span-2 w-2/4 mx-auto">
-            <button className="btn btn-primary">Submit</button>
-          </div>
-        </form>
-      </div>
+     </form>
+
     </div>
   );
 };

@@ -1,6 +1,7 @@
-// import Banner from "./HomePageDetails/Banner";
+import Banner from "./HomePageDetails/Banner";
 
 import { Helmet } from "react-helmet";
+import Gallery from "./HomePageDetails/Gallery";
 
 
 const Home = () => {
@@ -13,7 +14,8 @@ const Home = () => {
       <title>Home Page</title>
     </Helmet>
 
-            {/* <Banner/> */}
+            <Banner/>
+            <Gallery/>
         </div>
     );
 };

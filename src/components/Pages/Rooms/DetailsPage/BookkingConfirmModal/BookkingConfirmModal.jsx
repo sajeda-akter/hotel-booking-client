@@ -29,7 +29,9 @@ const BookkingConfirmModal = (
 
   const getFetch=()=>{
 
-    axios.get('https://assignment-category-0004-server.vercel.app/booking',{ params: { email: user?.email },withCredentials: true,})
+    axios.get('https://assignment-category-0004-server.vercel.app/booking'
+    // ,{ params: { email: user?.email },withCredentials: true,}
+    )
     .then(res=>
       setBook(res.data)
     )
@@ -73,7 +75,8 @@ const BookkingConfirmModal = (
           setIsBuyModalOpen(false);
         }
       });
-    } else {
+    }
+     else {
       Swal.fire({
         position: "center",
         icon: "error",
@@ -94,7 +97,7 @@ const BookkingConfirmModal = (
         open={isBuyModalOpen}
         onClose={onCloseBuyModal}
       >
-        <div className="modal-box ">
+        <div className="modal-box w-10/12 lg:w-full">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">

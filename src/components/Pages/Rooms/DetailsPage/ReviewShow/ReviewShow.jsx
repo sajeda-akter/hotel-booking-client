@@ -33,12 +33,12 @@ const ReviewShow = () => {
       <meta charSet="utf-8" />
         <title>Review Page</title>
       </Helmet>
-      <h1>Our Clients Review</h1>
+      <h1 className="text-3xl text-center font-medium my-12">Our Clients Review</h1>
       <AutoplaySlider
         play={true}
         cancelOnInteraction={false} // should stop playing on user interaction
         interval={5000}
-        className="bg-transparent"
+        className=""
       >
         {reviews.map((review) => (
           <div
