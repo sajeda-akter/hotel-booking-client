@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const Signup = () => {
   const {
@@ -45,13 +46,19 @@ const Signup = () => {
   }
   return (
 
-     <div
+    <div>
+        <Helmet>
+    <meta charSet="utf-8" />
+      <title>Signup Page</title>
+    </Helmet>
+       <div
       className="hero min-h-screen "
       style={{
         backgroundImage:
           "url(https://media.istockphoto.com/id/1435234356/photo/cyber-security-concept-login-user-identification-information-security-and-encryption-secure.jpg?s=612x612&w=0&k=20&c=eUz5LACuMeG1cEkjXIhqmDlgPV0uJZF7jkEIzjHV_HI=)",
       }}
     >
+      
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="card my-12 w-full max-w-xs md:max-w-md lg:max-w-xl shadow-2xl bg-base-100">
         <h1 className=" bg-[#016A70] text-center lg:text-4xl text-2xl text-white font-extrabold py-6 rounded-t-xl">
@@ -149,6 +156,7 @@ const Signup = () => {
           </div>
         </form>
       </div>
+    </div>
     </div>
 
   );

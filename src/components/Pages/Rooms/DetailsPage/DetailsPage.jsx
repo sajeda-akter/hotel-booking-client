@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import BookkingConfirmModal from "./BookkingConfirmModal/BookkingConfirmModal";
 import ReviewShow from "./ReviewShow/ReviewShow";
+import { Helmet } from "react-helmet";
 
 
 const DetailsPage = () => {
@@ -22,6 +23,10 @@ const DetailsPage = () => {
 
   return (
    <div>
+     <Helmet>
+      <meta charSet="utf-8" />
+        <title>Details Page</title>
+      </Helmet>
      <div className="card w-10/12 mx-auto mt-4  bg-gray-300 shadow">
       <figure className="px-10 pt-10">
         <img src={image} alt={roomSize} className="w-11/12 h-96 rounded-xl" />

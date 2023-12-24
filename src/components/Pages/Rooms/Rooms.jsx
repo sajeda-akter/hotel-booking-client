@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import {Helmet} from "react-helmet";
+
 import { Link } from "react-router-dom";
 
 const Rooms = () => {
@@ -44,6 +46,10 @@ const Rooms = () => {
 
   return (
     <div className="w-10/12 mx-auto mt-12">
+      <Helmet>
+      <meta charSet="utf-8" />
+        <title>Room Page</title>
+      </Helmet>
     <p className="text-3xl text-center font-medium"> Our Total Reviews: {reviews.length}</p>
    <div className="flex items-center ml-24 my-6">
    <h1 className="text-2xl font-medium me-6">Filter By Price Range</h1>

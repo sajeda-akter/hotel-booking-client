@@ -3,6 +3,7 @@ import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
 import moment from "moment";
+import { Helmet } from "react-helmet";
 
 const Reviews = () => {
   const { user } = useContext(AuthContext);
@@ -58,6 +59,10 @@ const Reviews = () => {
 
   return (
     <div className="">
+       <Helmet>
+      <meta charSet="utf-8" />
+        <title>Review Add Page</title>
+      </Helmet>
       <p>Current Timestamp: </p>
 
       <h1 className="text-2xl font-bold text-center mt-12 mb-4">

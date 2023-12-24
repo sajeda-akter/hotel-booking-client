@@ -4,6 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
@@ -70,6 +71,10 @@ const MyBooking = () => {
 
   return (
     <div className="w-3/4 mx-auto my-12 text-center ">
+       <Helmet>
+      <meta charSet="utf-8" />
+        <title>My Booking Page</title>
+      </Helmet>
       <h1 className="text-2xl font-medium text-center my-6">
         You have been booking:{bookings.length}
       </h1>

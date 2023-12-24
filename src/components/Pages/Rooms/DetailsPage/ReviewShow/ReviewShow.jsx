@@ -6,6 +6,7 @@ import "react-awesome-slider/dist/styles.css";
 import { Rating, Star, ThinStar } from "@smastrom/react-rating";
 
 import "@smastrom/react-rating/style.css";
+import { Helmet } from "react-helmet";
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 const myStyles = {
@@ -28,6 +29,10 @@ const ReviewShow = () => {
   }, []);
   return (
     <div className="w-10/12 mx-auto mt-6 rounded-md ">
+       <Helmet>
+      <meta charSet="utf-8" />
+        <title>Review Page</title>
+      </Helmet>
       <h1>Our Clients Review</h1>
       <AutoplaySlider
         play={true}
