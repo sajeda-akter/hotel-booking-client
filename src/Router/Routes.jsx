@@ -35,7 +35,7 @@ export const routers=createBrowserRouter([
             },
             {
                 path:'/myBooking',
-                element:<MyBooking/>
+                element:<PrivateRouter><MyBooking/></PrivateRouter>
             },
             {
                 path:'/update/:id',
@@ -45,7 +45,7 @@ export const routers=createBrowserRouter([
             {
                 path:'/reviews',
                 loader:()=>fetch('http://localhost:5000/booking'),
-                element:<Reviews/>
+                element:<PrivateRouter><Reviews/></PrivateRouter>
             },
             {
                 path:'/detailpage/:id',

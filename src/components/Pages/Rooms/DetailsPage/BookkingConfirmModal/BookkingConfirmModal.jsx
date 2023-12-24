@@ -4,8 +4,11 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../../../../AuthProvider/AuthProvider";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types';
 
-const BookkingConfirmModal = ({
+const BookkingConfirmModal = (
+ 
+  {
   isBuyModalOpen,
   setIsBuyModalOpen,
   onCloseBuyModal,
@@ -14,7 +17,6 @@ const BookkingConfirmModal = ({
 }) => {
 
   const { user } = useContext(AuthContext);
-  // const [startDate, setStartDate] = useState(new Date());
   const {
     _id,
     image,
@@ -24,25 +26,27 @@ const BookkingConfirmModal = ({
   } = rooms;
   const [book, setBook] = useState([]);
   const navigate=useNavigate()
+
   const getFetch=()=>{
-    fetch("http://localhost:5000/booking")
-    .then((res) => res.json())
-    .then((data) => {
-      setBook(data);
-    });
+
+    axios.get('http://localhost:5000/booking',{ params: { email: user?.email },withCredentials: true,})
+    .then(res=>
+      setBook(res.data)
+    )
   }
+
+
   useEffect(() => {
 
   getFetch()
-  }, []);
+  });
   const handleReFetch=()=>{
     getFetch()
   }
 
-  const idCheck = book.find((bk) => bk.roomId === rooms._id);
-  const date=moment(startDate).format("yyyy-MM-DD")
 
-  //  console.log(rooms.availability)
+  const idCheck = book.find((bk) => bk?.roomId === rooms?._id);
+  const date=moment(startDate).format("yyyy-MM-DD")
   const handleBooking = () => {
     handleReFetch
     if (!idCheck) {
@@ -77,6 +81,8 @@ const BookkingConfirmModal = ({
         showConfirmButton: false,
         timer: 1000,
       });
+      setIsBuyModalOpen(false);
+
     }
   };
 
@@ -111,4 +117,11 @@ const BookkingConfirmModal = ({
   );
 };
 
+BookkingConfirmModal.propTypes={
+  isBuyModalOpen:PropTypes.func,
+  setIsBuyModalOpen:PropTypes.func,
+  onCloseBuyModal:PropTypes.func,
+  rooms:PropTypes.object,
+  startDate:PropTypes.object,
+}
 export default BookkingConfirmModal;

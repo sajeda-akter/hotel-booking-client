@@ -12,9 +12,13 @@ const MyBooking = () => {
   // get all booking which booked
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/booking?email=${user?.email}`)
+      .get(`http://localhost:5000/booking?email=${user?.email}`,{withCredentials:true})
       .then((result) => {
         setBooking(result.data);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error fetching data:", error.message);
       });
   }, [user.email]);
 
@@ -26,7 +30,6 @@ const MyBooking = () => {
     const newDate = moment().format("YYYY-MM-DD");
     //  get day diference for deletion
     const daysDiff = specificDate.diff(moment(newDate), "days");
-    console.log(newDate, deleteBookDate);
 
     if (daysDiff > 2 && daysDiff > 0) {
       Swal.fire({

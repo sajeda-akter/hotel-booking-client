@@ -6,33 +6,14 @@ import moment from "moment";
 
 const Reviews = () => {
   const { user } = useContext(AuthContext);
-  const [bookings,setBookings]=useState([])
-    const email=bookings.map(booking=>booking.email=== user?.email)
-    console.log(email)
+  const [bookings, setBookings] = useState([]);
+  const hasBooking = bookings.find((booking) => booking.email === user?.email);
 
-  const [currentTimestamp, setCurrentTimestamp] = useState(null);
-  useEffect(()=>{
-
-    axios.get('http://localhost:5000/booking')
-    .then(data=>setBookings(data.data))
-
-  },[])
-console.log(bookings)
-  // useEffect(() => {
-  //   // Function to get the current timestamp
-  //   const getCurrentTimestamp = () => {
-  //     const timestamp = new Date();
-  //     setCurrentTimestamp(timestamp);
-  //   };
-
-  //   // Call the function when the component mounts
-  //   getCurrentTimestamp();
-
-  //   const intervalId = setInterval(getCurrentTimestamp, 1000);
-
-  //   // Clean up the interval when the component unmounts
-  //   return () => clearInterval(intervalId);
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/booking",{ params: { email: user?.email }, withCredentials:true})
+      .then((data) => setBookings(data.data));
+  }, [user?.email]);
 
   const handleReview = (e) => {
     e.preventDefault();
@@ -44,27 +25,24 @@ console.log(bookings)
 
     const addReview = {
       customer,
-      img:user.photoURL,
+      img: user.photoURL,
       rating,
       comment,
       date,
     };
-    if(email){
-      axios.post('http://localhost:5000/reviews',addReview)
-      .then(data=>{
-         if(data.data.insertedId){
+    if (hasBooking) {
+      axios.post("http://localhost:5000/reviews", addReview).then((data) => {
+        if (data.data.insertedId) {
           Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Successfully add a review",
-              showConfirmButton: false,
-              timer: 1000,
-            });
-         }
-      })
-  
-    }
-    else{
+            position: "center",
+            icon: "success",
+            title: "Successfully add a review",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        }
+      });
+    } else {
       Swal.fire({
         position: "center",
         icon: "error",
@@ -72,12 +50,10 @@ console.log(bookings)
         showConfirmButton: false,
         timer: 1000,
       });
-
     }
-    e.target.user.value = "";
     e.target.rating.value = "";
     e.target.comment.value = "";
-    e.target.date.value=''
+    e.target.date.value = "";
   };
 
   return (
@@ -101,6 +77,7 @@ console.log(bookings)
               placeholder="User name"
               className=" w-full input input-bordered"
               required
+              readOnly
             />
           </div>
           <div className="form-control">

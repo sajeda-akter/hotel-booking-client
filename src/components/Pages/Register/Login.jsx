@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 
 const Login = () => {
     const { register, handleSubmit,reset, formState: { errors } } = useForm();
-    const {signIn}=useContext(AuthContext)
+    const {signIn,googleSignin}=useContext(AuthContext)
     const location=useLocation()
     const navigate=useNavigate()
   
@@ -17,7 +18,11 @@ const Login = () => {
       const password=data.password;
       signIn(email,password)
       .then(result=>{
-     
+          const user={email}
+        axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+        .then(res=>{
+          console.log(res.data)
+        })
         Swal.fire({
           position: "center",
           icon: "success",
@@ -30,6 +35,18 @@ const Login = () => {
       })
 reset()
 
+    }
+    const handleGoogle=()=>{
+      googleSignin()
+      .then(result=>{
+      const user=(result.user.email)
+        // const user={result.email}
+        // axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+        // .then(res=>{
+        //   console.log(res.data)
+        // })
+      })
+      .catch(err=>console.log(err))
     }
     return (
         <div className="hero min-h-screen " style={{backgroundImage: 'url(https://media.istockphoto.com/id/1435234356/photo/cyber-security-concept-login-user-identification-information-security-and-encryption-secure.jpg?s=612x612&w=0&k=20&c=eUz5LACuMeG1cEkjXIhqmDlgPV0uJZF7jkEIzjHV_HI=)'}}>
@@ -61,7 +78,9 @@ reset()
 </div>
         </div>
         <div className="flex justify-around gap-4 mt-1">
-            <button className="border-2 border-[#016A70] hover:bg-[#35A29F] w-32 text-center rounded-md px-2 py-3 hover:text-[#FFFBF5]">Google</button>
+            <button className="border-2 border-[#016A70] hover:bg-[#35A29F] w-32 text-center rounded-md px-2 py-3 hover:text-[#FFFBF5]"
+            //  onClick={handleGoogle}
+             >Google</button>
             <button className="border-2 border-[#016A70] w-32 text-center rounded-md px-2 py-3 hover:text-[#FFFBF5] hover:bg-[#35A29F]">Github</button>
         </div>
         <div className="divider text-[#016A70] font-medium">OR</div>

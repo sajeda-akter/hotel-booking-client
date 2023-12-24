@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import "./Navbar.css";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-
+const navigate=useNavigate()
   // user logout button handle
   const handleLogout = () => {
     logOut().then(() => {
@@ -15,9 +15,10 @@ const Navbar = () => {
         icon: "success",
         title: "Successfully user logout",
         showConfirmButton: false,
-        timer: 1000,
+        timer: 500,
       });
     });
+    navigate('/login')
   };
 
   const menuItems = (
