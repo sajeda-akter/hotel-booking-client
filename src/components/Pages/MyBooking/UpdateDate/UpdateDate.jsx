@@ -21,7 +21,7 @@ const UpdateDate = () => {
     const upadteDate={
         date
     }
-    axios.patch(`http://localhost:5000/booking/${updateInfo._id}`,upadteDate)
+    axios.patch(`https://assignment-category-0004-server.vercel.app/booking/${updateInfo._id}`,upadteDate)
     .then(data=>{
 
        if(data.data.modifiedCount>0){

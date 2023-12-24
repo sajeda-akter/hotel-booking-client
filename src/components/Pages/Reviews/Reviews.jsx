@@ -12,7 +12,7 @@ const Reviews = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/booking",{ params: { email: user?.email }, withCredentials:true})
+      .get("https://assignment-category-0004-server.vercel.app/booking",{ params: { email: user?.email }, withCredentials:true})
       .then((data) => setBookings(data.data));
   }, [user?.email]);
 
@@ -32,7 +32,7 @@ const Reviews = () => {
       date,
     };
     if (hasBooking) {
-      axios.post("http://localhost:5000/reviews", addReview).then((data) => {
+      axios.post("https://assignment-category-0004-server.vercel.app/reviews", addReview).then((data) => {
         if (data.data.insertedId) {
           Swal.fire({
             position: "center",

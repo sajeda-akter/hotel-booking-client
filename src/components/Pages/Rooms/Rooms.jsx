@@ -1,68 +1,67 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 import { Link } from "react-router-dom";
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
-  const [reviews,setReviews]=useState([])
+  const [reviews, setReviews] = useState([]);
+  const [price, setPrice] = useState(0);
 
   // all room list data
   useEffect(() => {
-    fetch("http://localhost:5000/rooms")
+    fetch("https://assignment-category-0004-server.vercel.app/rooms")
       .then((res) => res.json())
       .then((data) => setRooms(data));
   }, []);
 
   // all reviews
-  useEffect(()=>{
-    fetch('http://localhost:5000/reviews')
-    .then(res=>res.json())
-    .then(data=>setReviews(data))
-  },[])
+  useEffect(() => {
+    fetch("https://assignment-category-0004-server.vercel.app/reviews")
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  }, []);
 
   // filter by price range
-  const handlePriceRange=(e)=>{
-    const price=parseInt(e.target.value)
-    const roomsPrice=rooms.filter(room=>
-      room.price<=price 
-      )
+  const handlePriceRange = (e) => {
+    const priceRange = parseInt(e.target.value);
+    const filteredPrice = rooms.filter((room) => {
+      const isInRange = room.price >= 200 && room.price < priceRange;
 
-      setRooms(roomsPrice)
-   
-  //   for(const perPrice of roomsPrice){
-  //     if(price>=perPrice ){
-  //       newPrice.push(perPrice)
-  //       console.log(perPrice)
-  //     }
-  //     else if(price>perPrice && newPrice>200){
-  //       console.log(perPrice)
-  //     }
-  //   }
-  //   // console.log(newPrice)
+      if (isInRange) {
+        console.log(room.price);
+      }
 
-  }
+      return isInRange;
+    });
+  };
 
   return (
     <div className="w-10/12 mx-auto mt-12">
       <Helmet>
-      <meta charSet="utf-8" />
+        <meta charSet="utf-8" />
         <title>Room Page</title>
       </Helmet>
-    <p className="text-3xl text-center font-medium"> Our Total Reviews: {reviews.length}</p>
-   <div className="flex items-center ml-24 my-6">
-   <h1 className="text-2xl font-medium me-6">Filter By Price Range</h1>
-        <select onChange={handlePriceRange} className="select select-bordered w-full max-w-xs">
+      <p className="text-3xl text-center font-medium">
+        {" "}
+        Our Total Reviews: {reviews.length}
+      </p>
+      <div className="flex items-center ml-24 my-6">
+        <h1 className="text-2xl font-medium me-6">Filter By Price Range</h1>
+        <select
+          onChange={handlePriceRange}
+          className="select select-bordered w-full max-w-xs"
+        >
           <option disabled selected>
-           Price Range
+            Price Range
           </option>
           <option value="200">200</option>
           <option value="250">250</option>
           <option value="300">300</option>
+          <option value="350">350</option>
         </select>
-   </div>
-  
+      </div>
 
       <div className="grid grid-cols-3 gap-4">
         {rooms.map((room) => (

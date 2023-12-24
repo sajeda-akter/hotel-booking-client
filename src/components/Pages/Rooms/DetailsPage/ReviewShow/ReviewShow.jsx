@@ -21,7 +21,7 @@ const ReviewShow = () => {
 
   useEffect(() => {
  
-    axios.get("http://localhost:5000/reviews").then((data) => {
+    axios.get("https://assignment-category-0004-server.vercel.app/reviews").then((data) => {
         setReview(data.data);
       });
     

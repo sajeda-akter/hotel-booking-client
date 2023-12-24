@@ -29,7 +29,7 @@ const BookkingConfirmModal = (
 
   const getFetch=()=>{
 
-    axios.get('http://localhost:5000/booking',{ params: { email: user?.email },withCredentials: true,})
+    axios.get('https://assignment-category-0004-server.vercel.app/booking',{ params: { email: user?.email },withCredentials: true,})
     .then(res=>
       setBook(res.data)
     )
@@ -60,7 +60,7 @@ const BookkingConfirmModal = (
         customer: user.displayName,
         email: user.email,
       };
-      axios.post("http://localhost:5000/booking", newBooking).then((data) => {
+      axios.post("https://assignment-category-0004-server.vercel.app/booking", newBooking).then((data) => {
         if (data.data.insertedId) {
           Swal.fire({
             position: "center",

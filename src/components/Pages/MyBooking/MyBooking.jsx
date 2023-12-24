@@ -13,7 +13,7 @@ const MyBooking = () => {
   // get all booking which booked
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/booking?email=${user?.email}`,{withCredentials:true})
+      .get(`https://assignment-category-0004-server.vercel.app/booking?email=${user?.email}`,{withCredentials:true})
       .then((result) => {
         setBooking(result.data);
       })
@@ -22,6 +22,7 @@ const MyBooking = () => {
         console.error("Error fetching data:", error.message);
       });
   }, [user.email]);
+  console.log(bookings)
 
   const handleDelete = (_id) => {
     const date = bookings.find((booking) => booking._id === _id);
@@ -43,7 +44,7 @@ const MyBooking = () => {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.delete(`http://localhost:5000/booking/${_id}`).then((data) => {
+          axios.delete(`https://assignment-category-0004-server.vercel.app/booking/${_id}`).then((data) => {
             if (data.data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
@@ -70,18 +71,18 @@ const MyBooking = () => {
   };
 
   return (
-    <div className="w-3/4 mx-auto my-12 text-center ">
+    <div className="lg:w-3/4 md:w-11/12 mx-auto my-12 text-center ">
        <Helmet>
       <meta charSet="utf-8" />
         <title>My Booking Page</title>
       </Helmet>
-      <h1 className="text-2xl font-medium text-center my-6">
+      <h1 className="lg:text-2xl md:text-xl font-bold text-center my-6">
         You have been booking:{bookings.length}
       </h1>
       <div className="overflow-x-auto ">
         <table className="table">
           {/* head */}
-          <thead className="text-xl bg-gray-200">
+          <thead className="lg:text-xl md:text-xl bg-gray-200">
             <tr>
               <th></th>
               <th>Room</th>
@@ -91,7 +92,7 @@ const MyBooking = () => {
               <th>Booking Status</th>
             </tr>
           </thead>
-          <tbody className="text-xl bg-gray-100">
+          <tbody className="lg:text-xl bg-gray-100">
             {/* row 1 */}
             {bookings.map((booking, i) => (
               <tr key={booking._id}>

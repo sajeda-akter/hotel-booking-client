@@ -39,17 +39,17 @@ export const routers=createBrowserRouter([
             },
             {
                 path:'/update/:id',
-                loader:({params})=>fetch(`http://localhost:5000/booking/${params.id}`),
+                loader:({params})=>fetch(`https://assignment-category-0004-server.vercel.app/booking/${params.id}`),
                 element:<UpdateDate/>
             },
             {
                 path:'/reviews',
-                loader:()=>fetch('http://localhost:5000/booking'),
+                loader:()=>fetch('https://assignment-category-0004-server.vercel.app/booking'),
                 element:<PrivateRouter><Reviews/></PrivateRouter>
             },
             {
                 path:'/detailpage/:id',
-                loader:({params})=>fetch(`http://localhost:5000/rooms/${params.id}`),
+                loader:({params})=>fetch(`https://assignment-category-0004-server.vercel.app/rooms/${params.id}`),
                 element:<PrivateRouter><DetailsPage/></PrivateRouter>
             }
             

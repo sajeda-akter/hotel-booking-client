@@ -20,7 +20,7 @@ const Login = () => {
       signIn(email,password)
       .then(result=>{
           const user={email}
-        axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+        axios.post('https://assignment-category-0004-server.vercel.app/jwt',user,{withCredentials:true})
         .then(res=>{
           console.log(res.data)
         })
@@ -40,12 +40,12 @@ reset()
     const handleGoogle=()=>{
       googleSignin()
       .then(result=>{
-      const user=(result.user.email)
-        // const user={result.email}
-        // axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
-        // .then(res=>{
-        //   console.log(res.data)
-        // })
+    
+        const user={email:result.user.email}
+        axios.post('https://assignment-category-0004-server.vercel.app/jwt',user,{withCredentials:true})
+        .then(res=>{
+          console.log(res.data)
+        })
       })
       .catch(err=>console.log(err))
     }
@@ -86,7 +86,7 @@ reset()
         </div>
         <div className="flex justify-around gap-4 mt-1">
             <button className="border-2 border-[#016A70] hover:bg-[#35A29F] w-32 text-center rounded-md px-2 py-3 hover:text-[#FFFBF5]"
-            //  onClick={handleGoogle}
+             onClick={handleGoogle}
              >Google</button>
             <button className="border-2 border-[#016A70] w-32 text-center rounded-md px-2 py-3 hover:text-[#FFFBF5] hover:bg-[#35A29F]">Github</button>
         </div>
