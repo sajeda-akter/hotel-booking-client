@@ -37,7 +37,7 @@ const UserTestimonial = () => {
       >
         {reviews.map((review) => (
           <div
-            className="bg-white lg:w-2/4  md:w-3/4 p-1 mt-44 lg:p-12 text-center rounded-xl "
+            className="bg-white lg:w-2/4   md:w-3/4 p-1 mt-44 lg:mt-0 lg:p-12 text-center rounded-xl "
             key={review._id}
           >
           

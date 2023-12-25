@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar/Navbar";
 
 const Main = () => {
     return (
-        <div>
+        <div className="bg-slate-100">
             <Navbar/>
             <Outlet/>
             

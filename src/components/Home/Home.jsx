@@ -6,6 +6,7 @@ import Gallery from "./HomePageDetails/Gallery";
 import Footer from "./Footer/Footer";
 import FeaturedRoom from "./HomePageDetails/FeaturedRoom/FeaturedRoom";
 import UserTestimonial from "./HomePageDetails/UserTestimonial";
+import TextAnimation from "./HomePageDetails/TextAnimation";
 
 const Home = () => {
   
@@ -16,7 +17,7 @@ const Home = () => {
         <meta charSet="utf-8" />
         <title>Home Page</title>
       </Helmet>
-
+    <TextAnimation/>
       <Banner />
       <FeaturedRoom/>
       <Gallery />
