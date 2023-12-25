@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const Rooms = () => {
   const [reviews, setReviews] = useState([]);
   const [rooms, setRooms] = useState([]);
+  const [filteredPrice,setFilteredPrice]=useState([])
 
   // all room list data
   useEffect(() => {
@@ -25,15 +26,9 @@ const Rooms = () => {
   // filter by price range
   const handlePriceRange = (e) => {
     const priceRange = parseInt(e.target.value);
-    const filteredPrice = rooms.filter((room) => {
-      const isInRange = room.price >= 200 && room.price < priceRange;
-
-      if (isInRange) {
-        console.log(room.price);
-      }
-
-      return isInRange;
-    });
+    const price=rooms.filter(room=>room.price<=priceRange)
+     setFilteredPrice(price)
+   
   };
 
   return (
@@ -55,15 +50,13 @@ const Rooms = () => {
           <option disabled selected>
             Price Range
           </option>
-          <option value="200">200</option>
           <option value="250">250</option>
-          <option value="300">300</option>
           <option value="350">350</option>
         </select>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 mt-24 lg:grid-cols-3  gap-8">
-        {rooms.map((room) => (
+        {filteredPrice.map((room) => (
           <div key={room._id} className="card w-96 md:w-80  bg-[#BCEAD5] shadow-xl">
             <Link to={`/detailpage/${room._id}`}>
               {" "}
