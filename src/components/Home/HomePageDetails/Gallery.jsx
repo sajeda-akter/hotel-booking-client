@@ -19,10 +19,10 @@ const Gallery = () => {
   };
   return (
     <div>
-      <h1 className="text-4xl text-center mt-24 mb-12 font-bold">
+      <h1 className=" text-2xl lg:text-4xl text-center mt-24 mb-12 font-bold">
         Our Image Gallery And Video
       </h1>
-      <div className="flex justify-between gap-4">
+      <div className="flex lg:flex-row flex-col justify-between gap-4">
         <iframe
           className="w-full h-96"
           src="https://www.youtube.com/embed/Qbt8NvcEpY0?si=Nesm5DlzJnz2wFNp"
@@ -42,7 +42,7 @@ const Gallery = () => {
         ></iframe>
       </div>
 
-      <div className="mt-6 grid grid-cols-4">
+      <div className="mt-6 grid lg:grid-cols-4 grid-cols-2">
         <img
           className="w-96 h-60"
           src="https://media.istockphoto.com/id/486967874/photo/interior-classic-decor-bedroom.jpg?s=612x612&w=0&k=20&c=eqjPw9-oenfOsUu3GrBLDqjjpFVUzFnAs3VeW8n1Un8="

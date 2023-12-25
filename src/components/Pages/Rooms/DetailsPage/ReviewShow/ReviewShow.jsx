@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 import AwesomeSlider from "react-awesome-slider";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
 import "react-awesome-slider/dist/styles.css";
-import { Rating, Star, ThinStar } from "@smastrom/react-rating";
+import { Rating, Star,  } from "@smastrom/react-rating";
 
 import "@smastrom/react-rating/style.css";
-import { Helmet } from "react-helmet";
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 const myStyles = {
@@ -28,42 +27,33 @@ const ReviewShow = () => {
 
   }, []);
   return (
-    <div className="w-10/12 mx-auto mt-6 rounded-md ">
-       <Helmet>
-      <meta charSet="utf-8" />
-        <title>Review Page</title>
-      </Helmet>
-      <h1 className="text-3xl text-center font-medium my-12">Our Clients Review</h1>
+    <div className="w-10/12 mx-auto rounded-md  ">
+   
+      <h1 className="text-2xl lg:text-4xl text-center mt-24 lg:mb-6 mb-12 font-bold">Our Clients Review</h1>
       <AutoplaySlider
         play={true}
         cancelOnInteraction={false} // should stop playing on user interaction
         interval={5000}
         className=""
       >
-        {reviews.map((review) => (
+         {reviews.map((review) => (
           <div
-            className="bg-white w-2/4 p-12 text-center rounded-xl "
+            className="bg-white lg:w-2/4  md:w-4/5 p-1 lg:mt-2 md:mt-12 lg:p-12 text-center rounded-xl "
             key={review._id}
           >
+          
             <img
               src={review.img}
-              className="w-24 h-24 rounded-full mx-auto my-4"
+              className="lg:w-24 lg:h-24 w-16 h-16  mt-44 md:mt-0 lg:mt-0 rounded-full mx-auto my-4"
               alt=""
             />
-            <p>{review.comment.slice(0, 260)}...</p>
-            <p className="text-xl font-bold">{review.customer}</p>
-            <p>{review.rating}</p>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="16"
-              width="14"
-              viewBox="0 0 448 512"
-            >
-              <path d="M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320 288 216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H320c-35.3 0-64-28.7-64-64V320 288 216z" />
-            </svg>
-            <p className="lg:ml-32">
+            <p className="text-[15px]">{review.comment.slice(0, 260)}...</p>
+            <p className="lg:text-2xl md:text-2xl font-bold">{review.customer}</p>
+            
+            <p className="lg:ml-48  md:ml-44 mb-44 lg:mb-0 mt-4  ml-28">
               <Rating
-                style={{ maxWidth: 250 }}
+              className="w-32"
+                style={{ maxWidth: 150 }}
                 value={review.rating}
                 itemStyles={myStyles}
               />
@@ -71,6 +61,7 @@ const ReviewShow = () => {
           </div>
         ))}
       </AutoplaySlider>
+        
     </div>
   );
 };

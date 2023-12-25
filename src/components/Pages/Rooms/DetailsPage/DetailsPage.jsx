@@ -14,7 +14,7 @@ const DetailsPage = () => {
   const rooms = useLoaderData();
   const { image, description, roomSize, specialOffer, availability, price } =
     rooms;
-console.log(rooms)
+
   // Modal States
   const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
   const onCloseBuyModal = () => {

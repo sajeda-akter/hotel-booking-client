@@ -5,9 +5,9 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 const Rooms = () => {
-  const [rooms, setRooms] = useState([]);
   const [reviews, setReviews] = useState([]);
-rooms.map(room=>console.log(room._id))
+  const [rooms, setRooms] = useState([]);
+
   // all room list data
   useEffect(() => {
     fetch("https://assignment-category-0004-server.vercel.app/rooms")

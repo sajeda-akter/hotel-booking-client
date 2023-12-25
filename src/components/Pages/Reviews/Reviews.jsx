@@ -12,7 +12,9 @@ const Reviews = () => {
 
   useEffect(() => {
     axios
-      .get("https://assignment-category-0004-server.vercel.app/booking",{ params: { email: user?.email }, withCredentials:true})
+      .get("https://assignment-category-0004-server.vercel.app/booking"
+      // ,{ params: { email: user?.email }, withCredentials:true}
+      )
       .then((data) => setBookings(data.data));
   }, [user?.email]);
 

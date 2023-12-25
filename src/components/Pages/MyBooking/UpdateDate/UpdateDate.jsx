@@ -42,18 +42,12 @@ const UpdateDate = () => {
       <meta charSet="utf-8" />
         <title>Update Page</title>
       </Helmet>
-    <div className="bg-slate-200 w-3/4 mx-auto px-12 h-96 mt-12 rounded-md">
-    <form className="flex items-center  justify-evenly" onSubmit={handleUpdate}>
-        <button  className="bg-[#35A29F] p-2 w-32 rounded-md text-white">Sumit</button>
-    {/* <DatePicker
-            className=" px-3 py-2 mb-3 mt-4"
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            dateFormat="yyyy-MM-dd"
-            
-            name="date"
-          /> */}
-          <input defaultValue={updateInfo.date} name="date" type="text" >
+      <h1 className=" text-2xl lg:text-4xl text-center font-medium my-5">Update your  booking date</h1>
+    <div className="bg-slate-200  w-96 mx-auto px-12 h-96 mt-12 rounded-md">
+    <form className="flex flex-col  items-center  justify-evenly" onSubmit={handleUpdate}>
+        <button  className="bg-[#35A29F] p-2 my-5 w-32 rounded-md text-white">Sumit</button>
+
+          <input defaultValue={updateInfo.date} name="date" type="date" >
 
           </input>
 </form>
