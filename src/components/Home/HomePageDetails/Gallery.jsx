@@ -19,7 +19,7 @@ const Gallery = () => {
   };
   return (
     <div>
-      <h1 className=" text-2xl lg:text-4xl text-center mt-24 mb-12 font-bold">
+      <h1 className="w-96 mx-auto lg:w-2/4 border-y-2 border-slate-400 p-2 text-2xl lg:text-4xl text-center mt-24 mb-12 font-bold">
         Our Image Gallery And Video
       </h1>
       <div className="flex lg:flex-row flex-col justify-between gap-4">

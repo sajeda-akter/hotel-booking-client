@@ -6,6 +6,7 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
+
 const MyBooking = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBooking] = useState([]);
@@ -14,12 +15,12 @@ const MyBooking = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`https://assignment-category-0004-server.vercel.app/booking?email=${user.email}`
-        // { withCredentials: true }
+        .get(
+          `https://assignment-category-0004-server.vercel.app/booking?email=${user.email}`
+          // { withCredentials: true }
         )
         .then((result) => {
           setBooking(result.data);
-          console.log(result);
         })
         .catch((error) => {
           // Handle error
@@ -27,7 +28,6 @@ const MyBooking = () => {
         });
     }
   }, [user.email]);
-  console.log(bookings)
 
   const handleDelete = (_id) => {
     const date = bookings.find((booking) => booking._id === _id);
@@ -49,20 +49,24 @@ const MyBooking = () => {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.delete(`https://assignment-category-0004-server.vercel.app/booking/${_id}`).then((data) => {
-            if (data.data.deletedCount > 0) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your booking has been deleted.",
-                icon: "success",
-                timer: 1000,
-              });
-              const remainging = bookings.filter(
-                (booking) => booking._id != _id
-              );
-              setBooking(remainging);
-            }
-          });
+          axios
+            .delete(
+              `https://assignment-category-0004-server.vercel.app/booking/${_id}`
+            )
+            .then((data) => {
+              if (data.data.deletedCount > 0) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your booking has been deleted.",
+                  icon: "success",
+                  timer: 1000,
+                });
+                const remainging = bookings.filter(
+                  (booking) => booking._id != _id
+                );
+                setBooking(remainging);
+              }
+            });
         }
       });
     } else {
@@ -75,19 +79,21 @@ const MyBooking = () => {
     }
   };
 
+  console.log(bookings);
+
   return (
     <div className="lg:w-3/4 md:w-11/12 mx-auto my-12 text-center ">
-       <Helmet>
-      <meta charSet="utf-8" />
+      <Helmet>
+        <meta charSet="utf-8" />
         <title>My Booking Page</title>
       </Helmet>
       <h1 className="lg:text-2xl md:text-xl font-bold text-center my-6">
         You have been booking:{bookings.length}
       </h1>
-      <div className="overflow-x-auto ">
+
+      <div className="overflow-x-auto" id="table-container">
         <table className="table">
-          {/* head */}
-          <thead className="lg:text-xl md:text-xl bg-gray-200">
+          <thead className="lg:text-xl md:text-xl ">
             <tr>
               <th></th>
               <th>Room</th>
@@ -97,8 +103,7 @@ const MyBooking = () => {
               <th>Booking Status</th>
             </tr>
           </thead>
-          <tbody className="lg:text-xl bg-gray-100">
-            {/* row 1 */}
+          <tbody className="lg:text-xl">
             {bookings.map((booking, i) => (
               <tr key={booking._id}>
                 <th>{i + 1}</th>
@@ -120,6 +125,13 @@ const MyBooking = () => {
                     className="border-2 border-[#016A70] hover:bg-[#35A29F] w-24 text-center rounded-md px-1 py-2 hover:text-[#FFFBF5]"
                   >
                     Delete
+                  </button>
+                </td>
+                <td>
+                  {" "}
+                  <button className="border-2 border-[#016A70] hover:bg-[#35A29F] w-24 text-center rounded-md px-1 py-2 hover:text-[#FFFBF5]">
+
+                  <Link to={`/payment/${booking._id}`}>Pay</Link>
                   </button>
                 </td>
               </tr>

@@ -1,9 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import axios from "axios";
+
+
+
+
+// const image_hosting_key = import.meta.env.VITE_REACT_IMAGE_HOSTING_KEY;
+// const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Signup = () => {
   const {
@@ -12,31 +19,104 @@ const Signup = () => {
     reset,
     formState: { errors },
   } = useForm();
-
+const navigate=useNavigate()
+  
   // const passRegex = /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
   const { createUser, updateUserProfile,googleSignin } = useContext(AuthContext);
-  const handleSignup = (data) => {
+   const handleSignup =async (data) => {
     const email = data.email;
     const password = data.password;
     const name = data.name;
-    const photo = data.photo;
-    createUser(email, password).then((result) => {
-      console.log(result.user);
-      // update user profile
-      updateUserProfile(name, photo).then(() => {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Successfully create a user",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      });
-      reset();
+    
+    const imgFile = { image: data.image[0] };
+    const imaageHosting = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_REACT_IMGBB_KEY
+    }`;
+    
+    const res = await axios.post(imaageHosting, imgFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
     });
+
+    if(res.data.success){
+      createUser(email, password).then((result) => {
+        console.log(result.user);
+        const photo=res.data.data.display_url
+
+        // update user profile
+        updateUserProfile(name, photo).then(() => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Successfully create a user",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          navigate('/')
+        });
+        reset();
+      });
+    }
+   
+    
   };
 
   // google sigin
+  
+  // const handleSignup = async (data) => {
+ 
+  //   console.log(res)
+
+  //   // if (res.data.success) {
+  //   //   createUser(data.email, data.password)
+  //   //   .then((result) => {
+  //   //     const photoURL = res.data.data.display_url;
+  //   //     //    const number=parseInt(data.number)
+
+  //   //     // updateUser(data.name, photoURL).then(() => {
+  //   //     //   const userInfo={
+  //   //     //     user:data.name,
+  //   //     //     email:data.email,
+  //   //     //     role:'employee'
+  //   //     //   }
+  //   //     //   publicSecure.post('/users',userInfo)
+  //   //     //   .then(()=>{
+  //   //     //     sendEmailVerification(result.user)
+  //   //     //   .then(()=>{
+  //   //     //     Swal.fire({
+  //   //     //       position: "center",
+  //   //     //       icon: "success",
+  //   //     //       title: "user successfully signup",
+  //   //     //       showConfirmButton: false,
+  //   //     //       timer: 1000,
+  //   //     //     });
+            
+
+  //   //     //   })
+  //   //     //   })
+         
+         
+          
+          
+  //   //     // })
+  //   //     // reset();
+  //   //     console.log(result.user);
+  //   //   })
+  //   //   .catch(err=>
+  //   //     {
+  //   //       Swal.fire({
+  //   //         position: "center",
+  //   //         icon: "error",
+  //   //         title:(err.message),
+  //   //         showConfirmButton: false,
+  //   //         timer: 2000,
+  //   //       });
+  //   //     }
+  //   //      )
+  //   // }
+  // };
+  
   const handleGoogle=()=>{
     googleSignin()
     .then(result=>{
@@ -86,13 +166,13 @@ const Signup = () => {
             </label>
 
             <input
-              type="text"
+              type="file"
               placeholder="Enter your photo"
-              {...register("photo", { required: "Photo must be required" })}
+              {...register("image", { required: "Photo must be required" })}
               className="input input-bordered  text-[#016A70]"
             />
-            {errors.photo && (
-              <p className="text-red-600">{errors.photo?.message}</p>
+            {errors.image && (
+              <p className="text-red-600">{errors.image?.message}</p>
             )}
           </div>
           <div className="form-control text-xl">

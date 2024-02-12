@@ -29,7 +29,7 @@ const ReviewShow = () => {
   return (
     <div className="w-10/12 mx-auto rounded-md  ">
    
-      <h1 className="text-2xl lg:text-4xl text-center mt-24 lg:mb-6 mb-12 font-bold">Our Clients Review</h1>
+      <h1 className="border-y-2 border-slate-400 w-96 mx-auto p-2 text-2xl lg:text-4xl text-center mt-24 lg:mb-6 mb-12 font-bold">Our Clients Review</h1>
       <AutoplaySlider
         play={true}
         cancelOnInteraction={false} // should stop playing on user interaction
@@ -38,13 +38,13 @@ const ReviewShow = () => {
       >
          {reviews.map((review) => (
           <div
-            className="bg-white lg:w-2/4  md:w-4/5 p-1 lg:mt-2 md:mt-12 lg:p-12 text-center rounded-xl "
+            className="bg-white w-full lg:w-3/4  md:w-full p-1 md:p-0 lg:mt-2 md:mt-0 lg:p-12 text-center rounded-xl "
             key={review._id}
           >
           
             <img
               src={review.img}
-              className="lg:w-24 lg:h-24 w-16 h-16  mt-44 md:mt-0 lg:mt-0 rounded-full mx-auto my-4"
+              className="lg:w-24 lg:h-24 w-16 h-16  mt-44 md:mt-5 lg:mt-0 rounded-full mx-auto my-4"
               alt=""
             />
             <p className="text-[15px]">{review.comment.slice(0, 260)}...</p>
@@ -52,7 +52,7 @@ const ReviewShow = () => {
             
             <p className="lg:ml-48  md:ml-44 mb-44 lg:mb-0 mt-4  ml-28">
               <Rating
-              className="w-32"
+              className="w-32 lg:ml-40"
                 style={{ maxWidth: 150 }}
                 value={review.rating}
                 itemStyles={myStyles}

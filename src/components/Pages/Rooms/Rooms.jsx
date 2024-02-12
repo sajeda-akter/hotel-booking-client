@@ -37,7 +37,7 @@ const Rooms = () => {
         <meta charSet="utf-8" />
         <title>Room Page</title>
       </Helmet>
-      <p className="text-3xl text-center font-medium">
+      <p className="border-y-2 border-slate-400 p-2 w-96 mx-auto text-3xl text-center font-medium">
         {" "}
         Our Total Reviews: {reviews.length}
       </p>

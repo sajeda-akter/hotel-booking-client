@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import AwesomeSlider from "react-awesome-slider";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
 import "react-awesome-slider/dist/styles.css";
+import "swiper/css/autoplay"
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 const myStyles = {
@@ -22,22 +23,22 @@ const UserTestimonial = () => {
         setReview(data.data);
       });
   }, []);
-  console.log(reviews)
+
 
     return (
         <div>
-             <h1 className="text-2xl lg:text-4xl text-center mt-24 lg:mb-6 mb-12 font-bold">
+             <h1 className="w-80 mx-auto lg:w-2/4 border-y-2 border-slate-400 p-2 text-2xl lg:text-4xl text-center mt-24 lg:mb-6 mb-12 font-bold">
           Clients Testimonial
         </h1>
             <AutoplaySlider
         play={true}
         cancelOnInteraction={false} // should stop playing on user interaction
         interval={5000}
-        className=""
+        classNameName="h-96"
       >
         {reviews.map((review) => (
           <div
-            className="bg-white lg:w-2/4   md:w-3/4 p-1 mt-44 lg:mt-0 lg:p-12 text-center rounded-xl "
+            className="bg-white lg:w-3/4   md:w-3/4 p-1 mt-44 lg:mt-0 lg:p-12 text-center rounded-xl "
             key={review._id}
           >
           
@@ -49,9 +50,9 @@ const UserTestimonial = () => {
             <p>{review.comment.slice(0, 260)}...</p>
             <p className="text-2xl font-bold">{review.customer}</p>
             
-            <p className="lg:ml-56  md:ml-44 mb-44 lg:mb-0 mt-4  ml-28">
+            <p className="lg:ml-96  md:ml-44 mb-44 lg:mb-0 mt-4  ml-28">
               <Rating
-              className="w-32"
+              classNameName="w-32"
                 style={{ maxWidth: 150 }}
                 value={review.rating}
                 itemStyles={myStyles}
@@ -60,6 +61,10 @@ const UserTestimonial = () => {
           </div>
         ))}
       </AutoplaySlider>
+     
+   
+      
+
         </div>
     );
 };

@@ -104,15 +104,18 @@ const BookkingConfirmModal = (
               ✕
             </button>
           </form>
-          <h3 className="font-bold text-lg">{roomSize}</h3>
-          <p className="py-4 font-extrabold">{price}</p>
-          <p>{specialOffer}</p>
-          <p>{moment(startDate).format("yyyy-MM-DD")}</p>
+        <div className="flex justify-between items-center mb-3 gap-32">
+        <h3 className="font-bold text-lg">{roomSize}</h3>
+          <p className=" font-extrabold">${price}</p>
+          
+        </div>
+          <p>Offer: {specialOffer}</p>
+          <p>Check-in-date: {moment(startDate).format("yyyy-MM-DD")}</p>
           <button
-            className="btn w-2/4 mx-auto btn-primary"
+            className="btn w-2/4 mx-auto lg:ml-32 ml-20 md:ml-28 mt-8 btn-primary"
             onClick={handleBooking}
           >
-            Buy Now
+            Book Now
           </button>
         </div>
       </dialog>

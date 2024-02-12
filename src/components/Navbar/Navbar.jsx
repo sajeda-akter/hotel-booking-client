@@ -4,9 +4,12 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import "./Navbar.css";
 
+
+
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-const navigate=useNavigate()
+  const navigate = useNavigate();
+
   // user logout button handle
   const handleLogout = () => {
     logOut().then(() => {
@@ -18,7 +21,7 @@ const navigate=useNavigate()
         timer: 500,
       });
     });
-    navigate('/login')
+    navigate("/login");
   };
 
   const menuItems = (
@@ -26,6 +29,7 @@ const navigate=useNavigate()
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
+      
 
       <li>
         <NavLink to="/rooms">Rooms</NavLink>
@@ -36,8 +40,19 @@ const navigate=useNavigate()
       <li>
         <NavLink to="/myBooking">My Booking</NavLink>
       </li>
+   
+  
     </>
   );
+  const handleToOpen = () => {
+    document.getElementById("navmenu").classList.remove("hidden");
+    const menu = document.querySelectorAll("li");
+    for (const li of menu) {
+      li.addEventListener("click", () => {
+        document.getElementById("navmenu").classList.add("hidden");
+      });
+    }
+  };
 
   return (
     <div className="navbar bg-[#35A29F] z-30  sticky top-0 lg:text-[#FFFBF5]">
@@ -50,6 +65,7 @@ const navigate=useNavigate()
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              onClick={handleToOpen}
             >
               <path
                 strokeLinecap="round"
@@ -60,10 +76,12 @@ const navigate=useNavigate()
             </svg>
           </div>
           <ul
+            id="navmenu"
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1]  shadow bg-base-100 rounded-box w-52"
           >
             {menuItems}
+         
           </ul>
         </div>
 
@@ -73,7 +91,9 @@ const navigate=useNavigate()
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNQaeaA7HO8fdX0Ur5k0O3ShGEujjdz4ExFg&usqp=CAU"
             alt=""
           />
-          <p className="font-extrabold "><span className="text-red-600 space-x-3">COM</span>FORT</p>
+          <p className="font-extrabold ">
+            <span className="text-red-600 space-x-3">COM</span>FORT
+          </p>
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">

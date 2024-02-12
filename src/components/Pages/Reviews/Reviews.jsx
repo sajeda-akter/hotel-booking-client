@@ -67,7 +67,7 @@ const Reviews = () => {
       </Helmet>
     
 
-      <h1 className="text-2xl font-bold text-center mt-12 mb-4">
+      <h1 className="border-y-2 border-slate-400  w-96 mx-auto p-2 text-2xl font-bold text-center mt-12 mb-4">
         {" "}
         Add To your review
       </h1>

@@ -10,6 +10,7 @@ import PrivateRouter from "./PrivateRouter";
 import Reviews from "../components/Pages/Reviews/Reviews";
 import UpdateDate from "../components/Pages/MyBooking/UpdateDate/UpdateDate";
 import ErrorPage from "../components/Pages/ErrorPage/ErrorPage";
+import Payment from "../components/Pages/Payment/Payment";
 
 export const routers=createBrowserRouter([
     {
@@ -33,6 +34,7 @@ export const routers=createBrowserRouter([
                 path:'/rooms',
                 element:<Rooms/>
             },
+           
             {
                 path:'/myBooking',
                 element:<PrivateRouter><MyBooking/></PrivateRouter>
@@ -51,6 +53,11 @@ export const routers=createBrowserRouter([
                 path:'/detailpage/:id',
                 loader:({params})=>fetch(`https://assignment-category-0004-server.vercel.app/rooms/${params.id}`),
                 element:<PrivateRouter><DetailsPage/></PrivateRouter>
+            },
+            {
+                path:'/payment/:id',
+                loader:({params})=>fetch(`https://assignment-category-0004-server.vercel.app/booking/${params.id}`),
+                element:<Payment/>
             }
             
         ]
